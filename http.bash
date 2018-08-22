@@ -76,11 +76,21 @@ http-respond() {
 
 http-header() {
     declare name="$1" value="$2"
-    printf '%s: %s\r\n'
+    printf '%s: %s\r\n' "$name" "$value"
 }
 
 http-headers-end() {
     printf '\r\n'
+}
+
+http-init() {
+    if [[ -z "$1" ]]; then
+	declare -i status=200
+    else
+	declare -i status="$1"
+    fi
+    
+    printf 'HTTP/1.1 %d\r\n' "$status"
 }
 
 ##
