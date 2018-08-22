@@ -18,3 +18,12 @@ source http.bash
     echo "Output: $output"
     [[ '\hallo bye beep???$' == "$output" ]]
 }
+
+@test "http-get-query-param no question mark" {
+    declare query="hello=bye" output=''
+
+    output="$(http-get-query-param "$query" 'hello')"
+
+    echo "Output: $output"
+    [[ 'bye' == "$output" ]]
+}
