@@ -69,7 +69,7 @@ http-respond() {
     for header in "${!headers[@]}"; do
         printf '%s: %s\r\n' "$header" "${headers[$header]}"
     done
-    printf '\r\n\n'
+    printf '\r\n'
 
     echo "$content"
 }
