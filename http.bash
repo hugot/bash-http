@@ -67,11 +67,20 @@ http-respond() {
 
     printf 'HTTP/1.1 %d\n' "$status"
     for header in "${!headers[@]}"; do
-        printf '%s: %s\r\n' "$header" "${headers[$header]}"
+        http-header "$header" "${headers[$header]}"
     done
-    printf '\r\n'
+    http-headers-end
 
     echo "$content"
+}
+
+http-header() {
+    declare name="$1" value="$2"
+    printf '%s: %s\r\n'
+}
+
+http-headers-end() {
+    printf '\r\n'
 }
 
 ##
