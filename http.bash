@@ -98,7 +98,7 @@ http-init() {
 http-get-query-param() {
     declare query_string="$1" parameter="$2"
 
-    if [[ "$query" =~ (&|^\??)"$parameter"=([^&]+) ]]; then
+    if [[ "$query_string" =~ (&|^\??)"$parameter"=([^&]+) ]]; then
 	declare value="${BASH_REMATCH[2]}"
 	value="${value//\\/\\\\}"
 	value="${value//%/\\\x}"
